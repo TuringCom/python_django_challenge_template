@@ -16,19 +16,22 @@ In order to install and run this project locally, you would need to have the fol
 
 * Clone this repository
 
-Navigate to the project directory
+* Navigate to the project directory ```cd src/```
 
 * Install dependencies
 
-```pip install -r requirements.txt```
+			```pip install -r requirements.txt```
+
+* Edit `src/backend/settings.py` database credentials to your database instance
 
 * Create a MySQL database and run the sql file in the database directory to migrate the database
-```mysql -u <dbuser> -D <databasename> -p < ./sql/database.sql```
+			```mysql -u <dbuser> -D <databasename> -p < ./sql/database.sql```
 
 * Run development server
 
-```python manage.py runserver```
+			```python manage.py runserver```
 
 ## Request and Response Object API guide for all Endpoints
+
 * Check [here](https://docs.google.com/document/d/1J12z1vPo8S5VEmcHGNejjJBOcqmPrr6RSQNdL58qJyE/edit?usp=sharing)
 
