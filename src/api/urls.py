@@ -29,10 +29,7 @@ router.register(r'shipping/regions', ShippingRegionViewSet)
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    # TODO: implement the following endpoints
-    #path('v1/categories/inProduct/<int:product_id>/', CategoryViewSet.as_view({"get": "get_categories_from_product"})),
-    #path('v1/categories/inDepartment/<int:department_id>/',
-    #     CategoryViewSet.as_view({"get": "get_categories_from_department"})),
+    # TODO: implement the category, shopping cart and orders
 
     path('v1/attributes/values/<int:attribute_id>/', AttributeViewSet.as_view({"get": "get_values_from_attribute"})),
     path('v1/attributes/inProduct/<int:product_id>/', AttributeViewSet.as_view({"get": "get_attributes_from_product"})),
@@ -49,22 +46,4 @@ urlpatterns = [
     path('v1/customers/address', update_address),
     path('v1/customers/creditCard', update_credit_card),
 
-    path('v1/orders', create_order),
-    path('v1/orders/<int:order_id>', order),
-    path('v1/orders/shortDetail/<int:order_id>', order_details),
-    path('v1/orders/inCustomer', orders),
-
-    path('v1/shoppingcart/generateUniqueId', generate_cart_id),
-    path('v1/shoppingcart/add', add_products),
-    path('v1/shoppingcart/<str:cart_id>', get_products),
-    path('v1/shoppingcart/update/<int:item_id>', update_quantity),
-    path('v1/shoppingcart/empty/<str:cart_id>', empty_cart),
-    path('v1/shoppingcart/removeProduct/<int:item_id>', remove_product),
-    path('v1/shoppingcart/moveToCart/<int:item_id>', move_to_cart),
-    path('v1/shoppingcart/totalAmount/<str:cart_id>', total_amount),
-    path('v1/shoppingcart/saveForLater/<int:item_id>', save_for_later),
-    path('v1/shoppingcart/getSaved/<str:cart_id>', get_saved_products),
-
-    path('v1/stripe/charge', charge),
-    path('v1/stripe/webhooks', webhooks),
 ]
