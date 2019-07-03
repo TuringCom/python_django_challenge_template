@@ -4,7 +4,8 @@ from django.urls import path, include
 from rest_framework import routers
 
 from api.viewsets.attribute import AttributeViewSet
-from api.viewsets.category import CategoryViewSet
+#from api.viewsets.category import CategoryViewSet 
+# TODO: Implement category
 from api.viewsets.customers import create_customer, token_obtain_pair, SocialLoginView, update_address, \
     update_credit_card, customer, update_customer
 from api.viewsets.department import DepartmentViewSet
@@ -20,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 router = routers.DefaultRouter()
 router.register(r'departments', DepartmentViewSet)
-router.register(r'categories', CategoryViewSet)
+
 router.register(r'attributes', AttributeViewSet)
 router.register(r'products', ProductViewSet)
 router.register(r'tax', TaxViewSet)
@@ -28,9 +29,11 @@ router.register(r'shipping/regions', ShippingRegionViewSet)
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    path('v1/categories/inProduct/<int:product_id>/', CategoryViewSet.as_view({"get": "get_categories_from_product"})),
-    path('v1/categories/inDepartment/<int:department_id>/',
-         CategoryViewSet.as_view({"get": "get_categories_from_department"})),
+    # TODO: implement the following endpoints
+    #path('v1/categories/inProduct/<int:product_id>/', CategoryViewSet.as_view({"get": "get_categories_from_product"})),
+    #path('v1/categories/inDepartment/<int:department_id>/',
+    #     CategoryViewSet.as_view({"get": "get_categories_from_department"})),
+
     path('v1/attributes/values/<int:attribute_id>/', AttributeViewSet.as_view({"get": "get_values_from_attribute"})),
     path('v1/attributes/inProduct/<int:product_id>/', AttributeViewSet.as_view({"get": "get_attributes_from_product"})),
 

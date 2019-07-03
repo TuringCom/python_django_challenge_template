@@ -46,100 +46,34 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         """
         Get a list of Products by Categories
         """
-        logger.debug("Getting products by category")
-        page = request.GET.get('page', None)
-        limit = request.GET.get('limit', None)
-        description_length = request.GET.get('description_length', None)
-
-        pagination_class = ProductSetPagination
-        paginator = pagination_class()
-
-        queryset = Product.objects.filter(prod_categories__category_id=category_id).order_by('product_id')
-        if page is None:
-            paginator.page_query_param = page
-        if limit is not None:
-            paginator.page_size = limit
-        if description_length is not None:
-            paginator.page_query_description = description_length
-
-        products = paginator.paginate_queryset(queryset, request)
-        serializer = ProductSerializer(products, many=True)
-        logger.debug("Success")
-        return paginator.get_paginated_response(serializer.data)
+        # TODO: place the code here
 
     def get_products_by_department(self, request, department_id):
         """
         Get a list of Products of Departments
         """
-        logger.debug("Getting products by department")
-        page = request.GET.get('page', None)
-        limit = request.GET.get('limit', None)
-        description_length = request.GET.get('description_length', None)
-
-        pagination_class = ProductSetPagination
-        paginator = pagination_class()
-
-        queryset = Product.objects.filter(prod_categories__category__department_id=department_id).order_by(
-            '-product_id')
-        if page is None:
-            paginator.page_query_param = page
-        if limit is not None:
-            paginator.page_size = limit
-        if description_length is not None:
-            paginator.page_query_description = description_length
-
-        products = paginator.paginate_queryset(queryset, request)
-        serializer = ProductSerializer(products, many=True)
-        logger.debug("Success")
-        return paginator.get_paginated_response(serializer.data)
+        # TODO: place the code here
 
     @action(methods=['GET'], detail=True, url_path='details')
     def details(self, request, pk):
         """
         Get details of a Product
         """
-        logger.debug("Getting products detail")
-        try:
-            product = Product.objects.get(pk=pk)
-        except Product.DoesNotExist:
-            logger.error(errors.PRO_01.message)
-            return errors.handle(errors.PRO_01)
-        serializer_element = ProductSerializer(product)
-        logger.debug("Success")
-        return Response(serializer_element.data)
+        # TODO: place the code here
 
     @action(methods=['GET'], detail=True, url_path='locations')
     def locations(self, request, pk):
         """
         Get locations of a Product
         """
-        logger.debug("Getting products locations")
-        category = Category.objects.filter(prod_categories__product_id=pk).first()
-        if category is None:
-            errors.COM_10.message = "Location not found"
-            errors.COM_10.status = 404
-            logger.error(errors.COM_10.message)
-            return errors.handle(errors.COM_10)
-        logger.debug("Success")
-        return Response(
-            {
-                "category_id": category.category_id,
-                "category_name": category.name,
-                "department_id": category.department.department_id,
-                "department_name": category.department.name
-            }
-        )
+        # TODO: place the code here
 
     @action(methods=['GET'], detail=True, url_path='reviews', url_name='List reviews')
     def reviews(self, request, pk):
         """
         Return a list of reviews
         """
-        logger.debug("Getting Reviews")
-        reviews = Review.objects.filter(product_id=pk)
-        serializer_element = ReviewSerializer(reviews, many=True)
-        logger.debug("Success")
-        return Response(serializer_element.data)
+        # TODO: place the code here
 
     @swagger_auto_schema(method='POST', request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
@@ -153,27 +87,4 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         """
         Create a new review
         """
-        logger.debug("Creating a review")
-        if isinstance(request.user, AnonymousUser):
-            logger.error(errors.AUT_02.message)
-            return errors.handle(errors.AUT_02)
-        request.data['product_id'] = pk
-        request.data['customer_id'] = request.user.customer.customer_id
-        serializer = ReviewSerializer(data=request.data, context={'request': request})
-        try:
-            if serializer.is_valid():
-                review = Review.objects.create(product_id=pk,
-                                               review=request.data['review'],
-                                               rating=request.data['rating'],
-                                               customer_id=request.data['customer_id'])
-                serializer_element = ReviewSerializer(review)
-                return Response(serializer_element.data)
-            else:
-                errors.COM_02.message = serializer.errors
-                logger.error(errors.COM_02.message)
-                return errors.handle(errors.COM_02)
-        except Exception as error:
-            errors.COM_02.message = str(error)
-            logger.error(errors.COM_02.message)
-            return errors.handle(
-                errors.COM_02)
+        # TODO: place the code here

@@ -47,39 +47,7 @@ def update_customer(request):
     Update a customer
     """
     logger.debug("Updating customer")
-    if 'email' not in request.data:
-        errors.USR_02.field = 'email'
-        logger.error(errors.USR_02.message)
-        return errors.handle(errors.USR_02)
-
-    if 'name' not in request.data:
-        errors.USR_02.field = 'name'
-        logger.error(errors.USR_02.message)
-        return errors.handle(errors.USR_02)
-
-    try:
-        user = request.user
-        if isinstance(user, AnonymousUser):
-            logger.error(errors.USR_10.message)
-            return errors.handle(errors.USR_10)
-        customer = user.customer
-        if 'email' in request.data and request.data['email'] != '':
-            customer.email = request.data['email']
-        if 'name' in request.data and request.data['name'] != '':
-            customer.name = request.data['name']
-        if 'day_phone' in request.data and request.data['day_phone'] != '':
-            customer.day_phone = request.data['day_phone']
-        if 'eve_phone' in request.data and request.data['eve_phone'] != '':
-            customer.eve_phone = request.data['eve_phone']
-        if 'mob_phone' in request.data and request.data['mob_phone'] != '':
-            customer.mob_phone = request.data['mob_phone']
-        customer.save()
-        serializer_element = CustomerSerializer(customer)
-        logger.debug("Success")
-        return Response(serializer_element.data)
-    except Customer.DoesNotExist:
-        logger.error(errors.USR_03.message)
-        return errors.handle(errors.USR_03)
+    # TODO: place the code here
 
 
 @swagger_auto_schema(method="POST", request_body=CreateCustomerSerializer)
@@ -89,42 +57,7 @@ def create_customer(request):
     Register a customer.
     """
     logger.debug("Creating a customer")
-    if 'email' in request.data:
-        request.data['username'] = request.data['email']
-    else:
-        errors.USR_02.field = 'email'
-        logger.error(errors.USR_02.message)
-        return errors.handle(errors.USR_02)
-    u_serializer = UserSerializer(data=request.data, context={'request': request})
-    if u_serializer.is_valid():
-        user = u_serializer.save()
-        user.set_password(request.data['password'])
-        user.save()
-
-        request.data['user'] = user.id
-        serializer = CustomerSerializer(data=request.data, context={'request': request})
-        if serializer.is_valid():
-            customer = serializer.save()
-            serializer_element = CustomerSerializer(customer)
-
-            refresh = RefreshToken.for_user(user)
-            response = Response({
-                'customer': {
-                    'schema': serializer_element.data
-                },
-                'accessToken': 'Bearer ' + str(refresh.access_token),
-                'expires_in': '24h'
-            }, 200)
-            logger.debug("Success")
-            return response
-        else:
-            errors.COM_02.message = serializer.errors
-            logger.error(errors.COM_02.message)
-            return errors.handle(errors.COM_02)
-    else:
-        errors.COM_02.message = u_serializer.errors
-        logger.error(errors.COM_02.message)
-        return errors.handle(errors.COM_02)
+    # TODO: place the code here
 
 
 class TokenObtainPairPatchedView(TokenObtainPairView):
@@ -223,40 +156,7 @@ def update_address(request):
     """    
     Update the address from customer
     """
-    logger.debug("Updating address")
-    serializer = CustomerAddressSerializer(data=request.data, context={'request': request})
-    if serializer.is_valid():
-        try:
-            customer = request.user.customer
-            customer.address_1 = request.data.get('address_1', None)
-            customer.address_2 = request.data.get('address_2', None)
-            customer.city = request.data.get('city', None)
-            customer.region = request.data.get('region', None)
-            customer.postal_code = request.data.get('postal_code', None)
-            customer.country = request.data.get('country', None)
-            customer.shipping_region_id = request.data.get('shipping_region_id', None)
-
-            customer.save()
-            serializer_element = CustomerSerializer(customer)
-            logger.debug("Success")
-            return Response(serializer_element.data)
-        except AttributeError:
-            errors.COM_02.message = 'You must be logged in'
-            logger.error(errors.COM_02.message)
-            return errors.handle(errors.COM_02)
-        except ValueError as v_error:
-            errors.COM_02.message = str(v_error)
-            errors.COM_02.field = 'shipping_region_id'
-            logger.error(errors.COM_02.message)
-            return errors.handle(errors.COM_02)
-        except Exception as error:
-            errors.COM_02.message = str(error)
-            logger.error(errors.COM_02.message)
-            return errors.handle(errors.COM_02)
-    else:
-        errors.COM_02.message = serializer.errors
-        logger.error(errors.COM_02.message)
-        return errors.handle(errors.COM_02)
+    # TODO: place the code here
 
 
 def count_consecutive(num):

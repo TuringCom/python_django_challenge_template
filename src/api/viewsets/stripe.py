@@ -32,43 +32,7 @@ def charge(request):
     """
     This method receive a front-end payment and create a charge.
     """
-    logger.debug("Creating a charge")
-    stripe_token = request.data.get('stripeToken', None)
-    order_id = request.data.get('order_id', None)
-    description = request.data.get('description', None)
-    amount = request.data.get('amount', None)
-    currency = request.data.get('currency', None)
-
-    if stripe_token is None:
-        errors.COM_01.field = 'stripe_token'
-        logger.error(errors.COM_01.message)
-        return errors.handle(errors.COM_01)
-
-    if order_id is None:
-        errors.COM_01.field = 'order_id'
-        logger.error(errors.COM_01.message)
-        return errors.handle(errors.COM_01)
-
-    if description is None:
-        errors.COM_01.field = 'description'
-        logger.error(errors.COM_01.message)
-        return errors.handle(errors.COM_01)
-
-    if amount is None:
-        errors.COM_01.field = 'amount'
-        logger.error(errors.COM_01.message)
-        return errors.handle(errors.COM_01)
-    try:
-        response = payments.create(amount=amount, order_id=order_id, currency=currency, source=stripe_token,
-                                   description=description)
-        logger.debug("Success")
-        return Response(response)
-    except PaymentError as error:
-        errors.COM_02.message = error.message
-        errors.COM_02._status = error.status
-        errors.COM_02.code = error.code
-        logger.error(errors.COM_02.message)
-        return errors.handle(errors.COM_02)
+    # TODO: place the code here
 
 
 @api_view(['POST'])
@@ -76,14 +40,4 @@ def webhooks(request):
     """
     Endpoint that provide a synchronization
     """
-    logger.debug("Getting Webhooks")
-    try:
-        response = payments.create_webhook()
-        logger.debug("Success")
-        return Response(response)
-    except PaymentError as error:
-        errors.COM_02.message = error.message
-        errors.COM_02._status = error.status
-        errors.COM_02.code = error.code
-        logger.error(errors.COM_02.message)
-        return errors.handle(errors.COM_02)
+    # TODO: place the code here
