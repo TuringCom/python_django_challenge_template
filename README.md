@@ -34,9 +34,7 @@ In order to install and run this project locally, you would need to have the fol
 
 * Run development server
 
-			`python manage.py runserver`
-			
-			
+`python manage.py runserver`		
 
 ## Request and Response Object API guide for all Endpoints
 
