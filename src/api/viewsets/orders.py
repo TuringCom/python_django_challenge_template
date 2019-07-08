@@ -25,7 +25,6 @@ logger = logging.getLogger(__name__)
         'tax_id': openapi.Schema(type=openapi.TYPE_INTEGER, description='Tax ID.', required=['true']),
     }
 ))
-# @swagger_auto_schema(method="POST", request_body=OrdersSaveSerializer)
 @api_view(['POST'])
 def create_order(request):
     """

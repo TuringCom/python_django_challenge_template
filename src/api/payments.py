@@ -35,7 +35,7 @@ def handle_error(function):
                                code=err.get('code'),
                                param=err.get('param'))
         except stripe.error.RateLimitError as e:
-            # Since it's a decline, stripe.error.CardError will be caught
+            # Too many requests 
             logger.error('Too many requests made to the API too quickly')
             raise PaymentError(message="Too many requests made to the API too quickly", status=e.http_status)
         except stripe.error.InvalidRequestError as e:

@@ -19,7 +19,7 @@ In order to install and run this project locally, you would need to have the fol
 * Create a virtual environment
 * Install dependencies `pip install -r requirements.txt`
 
-* Edit `src/backend/settings.py` database credentials to your database instance
+* Edit `src/turing_backend/settings.py` database credentials to your database instance
 
 * Create a MySQL database and run the sql file in the database directory to migrate the database
 `mysql -u <dbuser> -D <databasename> -p < ./sql/database.sql`

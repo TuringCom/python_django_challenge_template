@@ -81,7 +81,6 @@ class SocialLoginView(generics.GenericAPIView):
         """Authenticate user through the access_token"""
         serializer = SocialSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        # provider = serializer.data.get('provider', None)
         provider = "facebook"
         strategy = load_strategy(request)
 
