@@ -17,7 +17,7 @@ In order to install and run this project locally, you would need to have the fol
 * Clone this repository
 * Navigate to the project directory `cd src/`
 * Create a virtual environment
-* Install dependencies `pip install -r requirements.txt`
+* Install dependencies `pip3 install -r requirements.txt`
 
 * Edit `src/turing_backend/settings.py` database credentials to your database instance
 
@@ -34,9 +34,7 @@ In order to install and run this project locally, you would need to have the fol
 
 * Run development server
 
-			`python manage.py runserver`
-			
-			
+`python manage.py runserver`		
 
 ## Request and Response Object API guide for all Endpoints
 
