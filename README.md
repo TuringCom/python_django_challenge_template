@@ -15,23 +15,29 @@ In order to install and run this project locally, you would need to have the fol
 ### Installation
 
 * Clone this repository
+* Navigate to the project directory `cd src/`
+* Create a virtual environment
+* Install dependencies `pip3 install -r requirements.txt`
 
-* Navigate to the project directory ```cd src/```
-
-* Install dependencies
-
-			```pip install -r requirements.txt```
-
-* Edit `src/backend/settings.py` database credentials to your database instance
+* Edit `src/turing_backend/settings.py` database credentials to your database instance
 
 * Create a MySQL database and run the sql file in the database directory to migrate the database
-			```mysql -u <dbuser> -D <databasename> -p < ./sql/database.sql```
+`mysql -u <dbuser> -D <databasename> -p < ./sql/database.sql`
+
+* Run the command `python manage.py makemigrations` 
+
+* Run the command `python manage.py migrate` to create and sync the mysql database (you must have the database previously created with name 'turing_db').
+
+* It's needed that you have your own super user to admin the application, so run the command `python manage.py createsuperuser` and follow the instructions.
+
+* Run the command `python manage.py runserver`
 
 * Run development server
 
-			```python manage.py runserver```
+`python manage.py runserver`		
 
 ## Request and Response Object API guide for all Endpoints
 
 * Check [here](https://docs.google.com/document/d/1J12z1vPo8S5VEmcHGNejjJBOcqmPrr6RSQNdL58qJyE/edit?usp=sharing)
+* Visit `http://127.0.0.1:8000/docs/
 
