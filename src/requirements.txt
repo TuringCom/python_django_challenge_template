@@ -3,12 +3,11 @@ djangorestframework
 django-cors-headers
 django-rest-passwordreset
 djangorestframework-simplejwt
-django-heroku
 django-filter
 requests
 drf-yasg
 python-memcached
 stripe
-mysqlclient # sudo apt-get install libmysqlclient-dev
+#mysqlclient # sudo apt-get install libmysqlclient-dev
 social-auth-app-django
 oauth2_provider
