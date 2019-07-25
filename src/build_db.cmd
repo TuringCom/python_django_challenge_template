@@ -1,1 +1,0 @@
-docker build -t turing-230020/turing_challenge_db_image:0.1 -f Dockerfile.mysql .

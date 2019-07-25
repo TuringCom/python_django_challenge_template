@@ -1,7 +1,9 @@
-# Apply database migrations
-echo "Apply database migrations"
-python manage.py migrate
+#!/bin/bash
 
-# Start server
-echo "Starting server"
-python manage.py runserver 0.0.0.0:8000
+set -x;
+
+/bin/bash /entrypoint.sh mysqld > /dev/null 2>&1 &
+
+python manage.py flush --no-input
+python manage.py migrate
+python manage.py runserver 8000

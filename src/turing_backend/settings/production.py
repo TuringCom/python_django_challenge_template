@@ -2,7 +2,7 @@ import django_heroku
 import dj_database_url
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -41,9 +41,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 APP_NAME = 'Turing E-commerce'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
