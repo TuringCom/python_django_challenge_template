@@ -7,6 +7,9 @@ ENV MYSQL_ROOT_PASSWORD 'root'
 ENV MYSQL_USER 'turing'
 ENV MYSQL_PASSWORD 'turing'
 
+# Can be changed for production settings
+ENV DEBUG True
+
 COPY ./sql/database.sql /docker-entrypoint-initdb.d/dump.sql
 
 # ensure local python is preferred over distribution python
@@ -113,13 +116,13 @@ RUN set -ex; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
+	apt-get install -y libmariadb-dev-compat gcc; \
 	apt-get install -y --no-install-recommends wget; \
 	\
 	wget -O get-pip.py 'https://bootstrap.pypa.io/get-pip.py'; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; \
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 	python get-pip.py \
@@ -128,6 +131,7 @@ RUN set -ex; \
 		"pip==$PYTHON_PIP_VERSION" \
 	; \
 	pip --version; \
+	pip install mysqlclient; \
 	\
 	find /usr/local -depth \
 		\( \
@@ -136,6 +140,7 @@ RUN set -ex; \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +; \
 	rm -f get-pip.py
+
 
 # Project Files and Settings
 ARG PROJECT=turing_backend
@@ -149,6 +154,7 @@ COPY . .
 RUN pip install -r requirements.txt
 
 EXPOSE 8000/tcp
+EXPOSE 3306/tcp
 
 COPY turing-entrypoint.sh /turing-entrypoint.sh
 

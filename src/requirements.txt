@@ -6,7 +6,6 @@ djangorestframework==3.9.4
 djangorestframework-simplejwt==4.3.0
 drf-yasg==1.16.0
 gunicorn==19.4.5
-mysqlclient
 oauth2-provider==0.0
 oauthlib==3.0.1
 python-memcached==1.59
