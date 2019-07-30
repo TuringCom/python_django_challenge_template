@@ -9,9 +9,9 @@ STRIPE_API_KEY = "sk_test_lomdOfxbm7QDgZWvR82UhV6D"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'turing_db3',
+        'NAME': 'turing',
         'USER': 'root',
-        'PASSWORD': 'turing$Pass1',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
     }
