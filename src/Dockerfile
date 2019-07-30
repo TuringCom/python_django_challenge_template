@@ -64,8 +64,8 @@ RUN set -ex \
                             keyserver.ubuntu.com \
                             hkp://keyserver.ubuntu.com:80 \
                             pgp.mit.edu) ; do \
-        gpg --keyserver "$server" --recv-keys "$GPG_KEY" && break || : ; \
-    done \
+        	gpg --keyserver "$server" --recv-keys "$GPG_KEY" && break || : ; \
+    	done \
 	&& gpg --batch --verify python.tar.xz.asc python.tar.xz \
 	&& { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \
 	&& rm -rf "$GNUPGHOME" python.tar.xz.asc \
@@ -164,5 +164,5 @@ EXPOSE 3306/tcp
 
 COPY turing-entrypoint.sh /turing-entrypoint.sh
 
-ENTRYPOINT ["/turing-entrypoint.sh"]
 RUN ["chmod", "+x", "/turing-entrypoint.sh"]
+ENTRYPOINT ["/turing-entrypoint.sh"]
