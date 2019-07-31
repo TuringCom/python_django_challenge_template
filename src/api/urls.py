@@ -28,22 +28,22 @@ router.register(r'tax', TaxViewSet)
 router.register(r'shipping/regions', ShippingRegionViewSet)
 
 urlpatterns = [
-    path('v1/', include(router.urls)),
+    path('', include(router.urls)),
     # TODO: implement the category, shopping cart and orders
 
-    path('v1/attributes/values/<int:attribute_id>/', AttributeViewSet.as_view({"get": "get_values_from_attribute"})),
-    path('v1/attributes/inProduct/<int:product_id>/', AttributeViewSet.as_view({"get": "get_attributes_from_product"})),
+    path('attributes/values/<int:attribute_id>/', AttributeViewSet.as_view({"get": "get_values_from_attribute"})),
+    path('attributes/inProduct/<int:product_id>/', AttributeViewSet.as_view({"get": "get_attributes_from_product"})),
 
-    path('v1/products/inCategory/<int:category_id>', ProductViewSet.as_view({"get": "get_products_by_category"})),
-    path('v1/products/inDepartment/<int:department_id>', ProductViewSet.as_view({"get": "get_products_by_department"})),
+    path('products/inCategory/<int:category_id>', ProductViewSet.as_view({"get": "get_products_by_category"})),
+    path('products/inDepartment/<int:department_id>', ProductViewSet.as_view({"get": "get_products_by_department"})),
 
-    path('v1/customer', customer),
-    path('v1/customer/update', update_customer),
+    path('customer', customer),
+    path('customer/update', update_customer),
 
-    path('v1/customers', create_customer, name="Create a customer"),
-    path('v1/customers/login', token_obtain_pair, name="Create a customer"),
-    path('v1/customers/facebook', SocialLoginView.as_view()),
-    path('v1/customers/address', update_address),
-    path('v1/customers/creditCard', update_credit_card),
+    path('customers', create_customer, name="Create a customer"),
+    path('customers/login', token_obtain_pair, name="Create a customer"),
+    path('customers/facebook', SocialLoginView.as_view()),
+    path('customers/address', update_address),
+    path('customers/creditCard', update_credit_card),
 
 ]
