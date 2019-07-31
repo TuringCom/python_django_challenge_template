@@ -6,6 +6,8 @@ ENV MYSQL_DATABASE 'turing'
 ENV MYSQL_ROOT_PASSWORD 'root'
 ENV MYSQL_USER 'turing'
 ENV MYSQL_PASSWORD 'turing'
+ENV MYSQL_PORT '3306'
+ENV MYSQL_HOST 'localhost'
 
 # Can be changed for production settings
 ENV DEBUG True
