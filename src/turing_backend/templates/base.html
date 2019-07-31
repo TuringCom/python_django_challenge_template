@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style>
+            .shadow {
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            }
+
+            .container {
+                max-width: 1140px;
+            }
+
+            .container {
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .login-container {
+                padding: 50px;
+                height: 80%;
+            }
+
+            .center {
+                margin: auto;
+            {#padding: 10px;#}
+            }
+
+            .w-50-percent {
+                width: 50%;
+            }
+
+            .btn-primary-color {
+                background-color: #39A8EF;
+                color: #fff;
+                padding: 5px 14px;
+            }
+
+            .shadow-bottom {
+                box-shadow: 0 5px 2px -2px #aaaaaa;
+            }
+
+            .btn-lg, .btn-group-lg > .btn {
+                padding: 0.5rem 1rem;
+                font-size: 1.25rem;
+                line-height: 1.5;
+                border-radius: 0.3rem;
+            }
+
+            .btn {
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: 0.25rem;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+
+        </style>
+
+
+    </head>
+<body style="background-color: #f5f9fc;font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;">
+{% block body %}
+    {% block container %}
+        <div class="container l-container" style="padding-top: 24px; padding-bottom: 24px">
+            <div class="login-container center shadow w-50-percent r-w-100p"
+                 style="background-color: white;
+                 box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+                 height: 80%!important;">
+                <h1 class="form-signin-heading" style="color: #aaa;margin-bottom: 32px;">Turing E-commerce</h1>
+
+                {% block content %}
+
+                {% endblock %}
+            </div> <!-- /container -->
+        </div>
+    {% endblock %}
+{% endblock %}
+</body>
+</html>

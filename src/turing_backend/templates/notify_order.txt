@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="">
+        <p style="color: #888;">
+            Hello {{ username }}, thanks for make you order with us !,
+            You can trace the process with the following number
+        </p>
+
+        <div style="border: 1px solid #eee;
+                border-radius: 2px;
+                padding: 10px;
+                text-align: center;
+                color: #da3636;
+                font-weight: bold;">
+            ORDER ID: {{ order_id }}
+        </div>
+        <br>
+
+        <p style="color: #888;">Best regards, Turing E-commerce team !!!</p>
+
+    </div>
+{% endblock %}
