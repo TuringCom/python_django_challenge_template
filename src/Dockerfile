@@ -161,7 +161,7 @@ COPY . .
 # Install requirements
 RUN pip install -r requirements.txt
 
-EXPOSE 8000/tcp
+EXPOSE 80/tcp
 EXPOSE 3306/tcp
 
 COPY turing-entrypoint.sh /turing-entrypoint.sh

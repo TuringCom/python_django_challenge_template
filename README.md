@@ -39,7 +39,7 @@ In order to install and run this project locally, you would need to have the fol
 ## Request and Response Object API guide for all Endpoints
 
 * Check [here](https://docs.google.com/document/d/1J12z1vPo8S5VEmcHGNejjJBOcqmPrr6RSQNdL58qJyE/edit?usp=sharing)
-* Visit `http://127.0.0.1:8000/docs/
+* Visit `http://127.0.0.1:80/docs/
 
 ## Using Docker 
 Build image
